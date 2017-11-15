@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import './ModalButton.css';
 
 class Modal extends Component {
+ 
   render() {
-    return ReactDOM.createPortal(this.props.children, this.props.domNode);
+    console.log(this);
+    const {childrens} = this.props;
+    return ReactDOM.createPortal(childrens, this.props.domNode);
   }
  } 
 
 class ModalButton extends Component {
-  static displayName = "t";
+  static displayName = "ModalButton";
 
   state = {
     isModalShow: false
@@ -23,12 +26,17 @@ class ModalButton extends Component {
   }
 
   render() {
+    /*const Modal = null;
+    if(this.state.isModalShow){
+      Modal = <Modal domNode={document.getElementById("portal")} />;
+    }*/
     return (
+    
       <div>
         <button onClick = {this.showModal}>Show modal!</button>
         { (this.state.isModalShow) ? 
 
-        <Modal domNode={document.getElementById("portal")}>
+        <Modal domNode={document.getElementById("modal")}>
           <div className="modal">
             <div className="modal__fog">
               <div className="modal__body">

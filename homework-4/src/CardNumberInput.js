@@ -5,25 +5,23 @@ class CardNumberInput extends Component {
 
   constructor(props){
     super(props);
-    console.log(constructor);
-    const num = this.format(this.props.val);
-    console.log("num = ", num);
+    
+    const num = this.format(this.props.cardNumber);
+
     this.state = {
       number: num
     }
   }
 
   componentWillReceiveProps(nextProps){
-    console.log("receiveProps, num= ", nextProps.val);
-    console.log("num2 = ", this.format(nextProps.val));
-    this.setState({number: this.format(nextProps.val)});
+    this.setState({number: this.format(nextProps.cardNumber)});
   }
 
   format = (str) => {
     let rezStr = '';
 
-    if(str !== undefined){
-      str.split("").map( (el, index) => {
+    if(str){
+      String(str).split("").map( (el, index) => {
         ((index+1)%4 === 0) ? rezStr += el+" " : rezStr += el;
       });
     }
@@ -31,13 +29,13 @@ class CardNumberInput extends Component {
     return rezStr;
   }
 
-  normilize = (str) => {
+  normalize = (str) => {
     return str.split(" ").join("");     
   }
 
   handleChange = (event) => {
     const {onChange} = this.props;
-    onChange( this.normilize( event.target.value ) );
+    onChange( this.normalize( event.target.value ) );
   }  
   
   render() {
