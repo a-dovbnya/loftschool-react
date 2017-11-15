@@ -39,7 +39,6 @@ class CardNumberInput extends Component {
   }  
   
   render() {
-    console.log('state = ',this.state.number);
     return (
       <input onChange={this.handleChange} value={this.state.number}/>
     );

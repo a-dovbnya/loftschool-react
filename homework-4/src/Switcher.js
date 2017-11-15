@@ -6,7 +6,7 @@ import './Switcher.css';
 
 class Switcher extends Component {
   state = {
-    selectedChild: 0,
+    selectedChild: 0
   }
   handleChangeChild = (event) =>{
     this.setState({selectedChild: parseInt(event.target.getAttribute("data-id"))});
@@ -16,13 +16,13 @@ class Switcher extends Component {
 
     const childrens = React.Children.toArray(this.props.children);
     const {selectedChild} = this.state;
-
+    
     return (
     <div>
       <nav>
         <ul className="component-list">
           {childrens.map( (child, index)=> (
-            <li className="component-list__name"  data-id={index} key={child.props.text} onClick = {this.handleChangeChild}>{ (child.type.displayName) ? child.type.displayName : child.type.name }</li>
+            <li className="component-list__name"  data-id={index} key={index} onClick = {this.handleChangeChild}>{ (child.type.displayName) ? child.type.displayName : child.type.name }</li>
           ))}
         </ul>
       </nav>
