@@ -6,8 +6,10 @@ import { moveOrderToCustomer } from '../../actions/farmActions';
 
 class Farm extends Component{
     moveOrderHandle = () => {
-        const order = this.props.orders[this.props.orders.length - 1];
-        this.props.moveOrderToCustomer(order);
+        if(this.props.orders.length > 0){
+            const order = this.props.orders[this.props.orders.length - 1];
+            this.props.moveOrderToCustomer(order);
+        }
     }
     
     render(){

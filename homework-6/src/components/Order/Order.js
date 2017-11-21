@@ -8,11 +8,16 @@ class Order extends Component{
         return (
             <div className="order">
                 <div className="order__upper">
+                    
                     <p className="p--order">Название: {title}</p>
                     <p className="p--order">Цена: {price}</p>
                 </div>
                 <div className="order__lower">
+                    { date ?
                     <p className="p--order">Создан: {date.toLocaleString()}</p>
+                    :
+                    null
+                    }
                 </div>
             </div>
         );

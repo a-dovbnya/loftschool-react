@@ -41,8 +41,11 @@ export class Market extends Component {
     this.props.createOrder(order);
   }
   moveToFarmHandle = () => {
-    const order = this.props.orders[this.props.orders.length - 1];
-    this.props.moveOrderToFarm(order);
+    if(this.props.orders.length > 0){
+      const order = this.props.orders[this.props.orders.length - 1];
+     // this.props.moveOrderToFarm(order);
+     this.props.moveOrderToFarm({name: 'test'});
+    }
   }
   render() {
     console.log(this.props);

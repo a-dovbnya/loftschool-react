@@ -6,12 +6,12 @@ export default function farmReducer(state = {orders: []}, action) {
     case MOVE_ORDER_TO_FARM:
       return { 
           ...state, 
-          orders: [...state.orders, action.payload] 
+          orders: [...state.orders, action.payload]
         };
     case MOVE_ORDER_TO_CUSTOMER:
       return {
         ...state,
-        orders: state.orders.filter(order => order.id !== action.payload.id),
+        orders: state.orders.filter(order => order.id !== action.payload.id)
       };
     default:
       return state;
