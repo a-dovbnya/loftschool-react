@@ -3,11 +3,14 @@ import { MOVE_ORDER_TO_CUSTOMER } from '../actions/farmTypes';
 
 export default function farmReducer(state = {orders: []}, action) {
   switch (action.type) {
-    case MOVE_ORDER_TO_FARM:
+    case MOVE_ORDER_TO_FARM:{
+      let orders;
+      (state.hasOwnProperty('orders')) ?  orders = [...state.orders] : orders = [];
       return { 
           ...state, 
-          orders: [...state.orders, action.payload]
+          orders: [...orders, action.payload]
         };
+      }
     case MOVE_ORDER_TO_CUSTOMER:
       return {
         ...state,

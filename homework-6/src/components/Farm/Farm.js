@@ -14,11 +14,11 @@ class Farm extends Component{
     
     render(){
         const {orders} = this.props;
-        console.log("Orders = ", orders);
+
         return (
             <div className="farm">
                 <h2>Производство на ферме</h2>
-                <button disabled="" onClick={this.moveOrderHandle}>Отправить урожай клиенту</button>
+                <button disabled={orders.length ? false : true} onClick={this.moveOrderHandle}>Отправить урожай клиенту</button>
                 <div className="order-list">
                     {orders.map( order => <Order key={order.id} title={order.name} price={order.price} date={order.createdAt} />)}
                 </div>
@@ -27,7 +27,6 @@ class Farm extends Component{
     }
 }
 
-//export default Farm;
 const mapStateToProps = state => ({orders: state.farm.orders});
 
 const mapDispatchToProps = dispatch => ({

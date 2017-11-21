@@ -35,7 +35,7 @@ const getNewOrder = () => {
 };
 
 export class Market extends Component {
-  // testMethod
+
   newOrderHandle = () => {
     const order = getNewOrder();
     this.props.createOrder(order);
@@ -43,18 +43,17 @@ export class Market extends Component {
   moveToFarmHandle = () => {
     if(this.props.orders.length > 0){
       const order = this.props.orders[this.props.orders.length - 1];
-     // this.props.moveOrderToFarm(order);
-     this.props.moveOrderToFarm({name: 'test'});
+      this.props.moveOrderToFarm(order);
     }
   }
   render() {
-    console.log(this.props);
+
     const {orders} = this.props;
     return (
       <div className="market">
         <h2>Новые заказы в магазине</h2>
         <button className="new-orders__create-button" onClick = {this.newOrderHandle}>Создать заказ</button>
-        <button disabled="" onClick = {this.moveToFarmHandle}>Отправить заказ на ферму</button>
+        <button disabled={orders.length ? false : true} onClick = {this.moveToFarmHandle}>Отправить заказ на ферму</button>
         <div className="order-list">
           {orders.map( order => <Order key={order.id} title={order.name} price={order.price} date={order.createdAt} />)}
         </div>
