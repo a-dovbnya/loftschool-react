@@ -1,16 +1,6 @@
-import {SEARCH_REQUEST, SEARCH_SUCESS} from "./searchTypes";
+import {createAction} from 'redux-actions';
 
-export function searchRequestAction() {
-    return {
-        type: SEARCH_REQUEST
-    }
-};
-
-export function searchSucessAction(result) {
-    return {
-        type: SEARCH_SUCESS,
-        payload: result
-    }
-};
-
+export const searchRequestAction = createAction('SEARCH_REQUEST', request => request);
+export const searchSucessAction = createAction('SEARCH_SUCESS', result => result);
+export const searchError = createAction('SEARCH_ERROR');
 

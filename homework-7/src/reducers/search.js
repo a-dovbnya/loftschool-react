@@ -1,20 +1,15 @@
-import {SEARCH_REQUEST, SEARCH_SUCESS} from "../actions/searchTypes";
+
+import {handleActions} from 'redux-actions';
+import {searchRequestAction, searchSucessAction, searchError} from "../actions/search"
 
 const initialState = {
     isFetching: false,
     result: [],
     error: null
 }
-export default function (state=initialState, action) {
 
-    switch(action.type){
-        case SEARCH_REQUEST: {
-            return {...state, isFetching: true}
-        }
-        case SEARCH_SUCESS: {
-            return state;
-        }
-        default: return state;
-    }
-
-}
+export default handleActions({
+    [searchRequestAction]: (state, action) => ({...state, isFetching: true}), 
+    [searchSucessAction]: (state, action) => ({...state, isFetching: false, result: action.payload}),
+    [searchError]: (state, action) => ({...state, error: true})
+}, initialState);
