@@ -8,7 +8,13 @@ import {
   removeTokenFromLocalStorage,
 } from '../localStorage';
 
+//----------------------
+import {setToken} from '../actions/auth';
+import {takeLatest} from 'redux-saga/effects';
+
 export function* authFlow() {
+
+  console.log("authFlow");
   while (true) {
     const isAuthorized = yield select(getIsAuthorized);
     const localStorageToken = yield call(getTokenFromLocalStorage);
@@ -31,3 +37,12 @@ export function* authFlow() {
     yield call(clearTokenApi);
   }
 }
+
+
+/*function setTokenSaga(action) {
+  console.log("in saga");
+  setTokenApi(action.payload);
+}
+export function* setTokenWatch() {
+  yield takeLatest(setToken, setTokenSaga);
+}*/
