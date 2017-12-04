@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
-import {setToken} from "../../actions/auth";
+import {authorize} from "../../actions/auth";
 import { Redirect } from 'react-router-dom';
 
 import './Login.css';
@@ -10,7 +10,9 @@ class Login extends PureComponent{
     keydownHandler = (e) => {
         if(e.keyCode === 13){
             const token = e.target.value;
-            this.props.setToken(setToken(token));
+            console.log("Отправляем action");
+            this.props.authorize(authorize(token));
+
         }
     }
 
@@ -38,6 +40,6 @@ class Login extends PureComponent{
 
 const mapStateToProps = state => ({auth: state.auth});
 const mapDispatchToProps = dispatch => ({
-    setToken: auth => dispatch(auth) 
+    authorize: auth => dispatch(auth) 
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

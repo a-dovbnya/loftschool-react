@@ -9,12 +9,10 @@ import {
 } from '../localStorage';
 
 //----------------------
-import {setToken} from '../actions/auth';
-import {takeLatest} from 'redux-saga/effects';
+//import {setToken} from '../actions/auth';
+//import {takeLatest} from 'redux-saga/effects';
 
 export function* authFlow() {
-
-  console.log("authFlow");
   while (true) {
     const isAuthorized = yield select(getIsAuthorized);
     const localStorageToken = yield call(getTokenFromLocalStorage);
