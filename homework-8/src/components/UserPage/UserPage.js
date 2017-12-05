@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {getUsers, getFetching, getError} from "../../reducers/users";
 import { logout } from "../../actions/auth";
 import { fetchUserRequest } from "../../actions/users";
+import Loader from 'react-svg-spinner';
 import "./UserPage.css";
 
 class UserPage extends PureComponent {
@@ -25,12 +26,20 @@ class UserPage extends PureComponent {
     };
 
     render(){
-        const src = "img-1.jpg";
-        console.log(this.props);
 
         const { data, isFetching } = this.props;
-        console.log("isFetching= ", isFetching);
-        console.log("data= ", data);
+
+        if(isFetching){
+            return (
+                <div className="user-page">
+                    <Loader size="70px" gap={4} color="fuchsia"/> 
+                </div>
+            );
+        }
+
+        if (!isFetching && !data) {
+            return (<div>Данные не загружены</div>);
+        }
 
         return (
             
@@ -38,27 +47,19 @@ class UserPage extends PureComponent {
                 <div className="user-page__panel">
                     <button onClick={this.appLogout} className="user-page__button">Exit</button>
                 </div>
-                {isFetching ?
-                    <div>preloader</div>
-                :   
-                    <div>
-                        {data && <div>
-                            <div className="user">
-                                <div className="user__ava-box">
-                                    <img src={data.avatar_url} className="user__ava" alt={data.login}/>
-                                </div>
-                                <div className="user__info">
-                                    <h3>{data.login}</h3>
-                                    <p>Followers: {data.followers}</p>
-                                    <p>Public repos: {data.public_repos}</p>
-                                </div>
-                            </div>
-
-                            <Followers />
-                        </div>
-                        }
+    
+                <div className="user">
+                    <div className="user__ava-box">
+                        <img src={data.avatar_url} className="user__ava" alt={data.login}/>
                     </div>
-                }
+                    <div className="user__info">
+                        <h3>{data.login}</h3>
+                        <p>Followers: {data.followers}</p>
+                        <p>Public repos: {data.public_repos}</p>
+                    </div>
+                </div>
+                <Followers login={data.login}/>
+                
             </div>
         );
     }
