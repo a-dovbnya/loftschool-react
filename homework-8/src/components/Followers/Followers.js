@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
 import Loader from 'react-svg-spinner';
 
-import {getFollowers, getFetching, getError} from "../../reducers/followers";
+import {getFollowers, getFetching} from "../../reducers/followers";
 import { fetchFollowersRequest } from "../../actions/followers";
 
 import Follower from "../Follower";
@@ -16,7 +16,7 @@ export class Followers extends PureComponent {
     }
 
     render(){
-        const { data, isFetching } = this.props;
+        const { followers, isFetching } = this.props;
         
         if(isFetching){
             return (
@@ -26,13 +26,13 @@ export class Followers extends PureComponent {
             );
         }
         
-        if (!isFetching && !data) {
+        if (!isFetching && !followers) {
             return (<div>Данные не загружены</div>);
         }
 
         return (
             <div className="follower-wrapp">
-                { data.map((follower) => <Follower key={follower.id} followerData={follower} /> )}
+                { followers.map((follower) => <Follower key={follower.id} followerData={follower} /> )}
             </div>
         );
     }
@@ -40,7 +40,7 @@ export class Followers extends PureComponent {
 
 //export default Followers;
 const mapStateToProps = state => ({
-    data: getFollowers(state),
+    followers: getFollowers(state),
     isFetching: getFetching(state)
 });
 const mapDispatchToProps = dispatch => ({

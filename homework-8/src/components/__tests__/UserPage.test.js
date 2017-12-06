@@ -1,20 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-//import { Switch, Route, Redirect } from 'react-router-dom';
 import { UserPage } from '../UserPage/UserPage';
 import { Followers } from '../Followers/Followers';
 import { fetchUserRequest } from "../../actions/users";
 import Loader from 'react-svg-spinner';
-//import PrivateRoute from '../PrivateRouter';
+
 
 describe('Компонент UserPage ', () => {
 
     describe('Содержит метод ', () => {
 
         const match = { params: { name: 'User123' } };
-        const fetchUserRequestMock = jest.fn();
-        const wrapper = shallow(<UserPage match={match} fetchUserRequest={fetchUserRequestMock} />);
+        const wrapper = shallow(<UserPage match={match} fetchUserRequest={jest.fn()} />);
     
         it('componentDidMount', () => {
             expect(wrapper.instance().componentDidMount).toBeDefined();       
@@ -61,10 +59,9 @@ describe('Компонент UserPage ', () => {
             expect(wrapper.find('.user__followers')).toHaveLength(1);
         });
         it('компонент Followers с передачей login через props', () => {
-            /*const followers = wrapper.findWhere(
-                el => el.type() === Followers && el.prop('login')
-            );*/
-            expect(wrapper.find(Followers).at(0)).toHaveLength(1);
+            const login = 'testUser';
+            wrapper.setProps({ user: { login } });
+            expect(wrapper.find('Connect(Followers)').prop('login')).toBe(login);
         });
     })
     
