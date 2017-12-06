@@ -32,7 +32,12 @@ class UserPage extends PureComponent {
         if(isFetching){
             return (
                 <div className="user-page">
-                    <Loader size="70px" gap={4} color="fuchsia"/> 
+                    <div className="user-page__panel">
+                        <button onClick={this.appLogout} className="user-page__button">Exit</button>
+                    </div>
+                    <div className="user">
+                        <Loader size="70px" gap={4} color="fuchsia"/> 
+                    </div>
                 </div>
             );
         }

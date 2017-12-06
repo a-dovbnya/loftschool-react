@@ -20,7 +20,9 @@ class Followers extends PureComponent {
         
         if(isFetching){
             return (
-                <Loader size="70px" gap={4} color="fuchsia"/> 
+                <div className="follower-wrapp">
+                    <Loader size="70px" gap={4} color="fuchsia"/> 
+                </div>
             );
         }
         

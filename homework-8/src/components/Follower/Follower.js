@@ -6,7 +6,6 @@ class Follower extends PureComponent {
 
     render(){
         const follower = {...this.props.followerData};
-        console.log(follower);
 
         return (
             <div className="follower">

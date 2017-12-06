@@ -10,7 +10,7 @@ import {
 import {setTokenApi, clearTokenApi} from '../../api';
 
 describe('Сага authFlow', () => {
-  const saga = authFlow();
+  /*const saga = authFlow();
   const token = 123;
 
   describe('Сценарий без токена авторизации в localstorage', () => {
@@ -53,4 +53,9 @@ describe('Сага authFlow', () => {
       expect(isTestsPresent).toEqual(true);
     });
   });
+
+  */
 });
+
+
+
