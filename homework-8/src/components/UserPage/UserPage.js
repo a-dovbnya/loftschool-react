@@ -7,7 +7,7 @@ import { fetchUserRequest } from "../../actions/users";
 import Loader from 'react-svg-spinner';
 import "./UserPage.css";
 
-class UserPage extends PureComponent {
+export class UserPage extends PureComponent {
 
     componentDidMount() {
         const name = this.props.match.params.name;
@@ -27,7 +27,7 @@ class UserPage extends PureComponent {
 
     render(){
 
-        const { data, isFetching } = this.props;
+        const { user, isFetching } = this.props;
 
         if(isFetching){
             return (
@@ -42,8 +42,8 @@ class UserPage extends PureComponent {
             );
         }
 
-        if (!isFetching && !data) {
-            return (<div>Данные не загружены</div>);
+        if (!isFetching && !user) {
+            return (<div className="error-msg">Данные не загружены</div>);
         }
 
         return (
@@ -55,15 +55,15 @@ class UserPage extends PureComponent {
     
                 <div className="user">
                     <div className="user__ava-box">
-                        <img src={data.avatar_url} className="user__ava" alt={data.login}/>
+                        <img src={user.avatar_url} className="user__ava" alt={user.login}/>
                     </div>
                     <div className="user__info">
-                        <h3>{data.login}</h3>
-                        <p>Followers: {data.followers}</p>
-                        <p>Public repos: {data.public_repos}</p>
+                        <h3 className="user__login">{user.login}</h3>
+                        <p className="user__followers">Followers: {user.followers}</p>
+                        <p className="user__repos">Public repos: {user.public_repos}</p>
                     </div>
                 </div>
-                <Followers login={data.login}/>
+                <Followers login={user.login}/>
                 
             </div>
         );
@@ -72,7 +72,7 @@ class UserPage extends PureComponent {
 
 //export default UserPage;
 const mapStateToProps = state => ({
-    data: getUsers(state),
+    user: getUsers(state),
     isFetching: getFetching(state)
 });
 const mapDispatchToProps = dispatch => ({

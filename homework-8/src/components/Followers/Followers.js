@@ -8,7 +8,7 @@ import { fetchFollowersRequest } from "../../actions/followers";
 import Follower from "../Follower";
 import "./Followers.css";
 
-class Followers extends PureComponent {
+export class Followers extends PureComponent {
 
     componentDidMount() {
         const name = this.props.login;

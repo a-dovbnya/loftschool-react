@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Switch, Route, Redirect, MemoryRouter } from 'react-router-dom';
-import AppRouter from '../AppRouter/AppRouter';
+import { AppRouter } from '../AppRouter/AppRouter';
 import PrivateRoute from '../PrivateRouter';
 
 describe('AppRouter', () => {
@@ -11,11 +11,11 @@ describe('AppRouter', () => {
         const wrapper = shallow(<AppRouter />);
        //console.log("wrapper = ", wrapper);
         //console.log(wrapper.debug());
-        expect(wrapper.find("Switch").at(0)).toHaveLength(1);
+        expect(wrapper.find(Switch)).toHaveLength(1);
         
     });
 
-    /*it('В AppRouter должен содержаться компонент PrivateRoute', () => {
+    it('В AppRouter должен содержаться компонент PrivateRoute', () => {
         const wrapper = shallow(<AppRouter />);
         expect(wrapper.find(PrivateRoute)).toHaveLength(1);
     });
@@ -45,6 +45,6 @@ describe('AppRouter', () => {
           el => el.type() === Redirect && el.prop('to') === '/user/dex157',
         );
         expect(findRedirects).toHaveLength(1);
-      }); */
+    }); 
 
 });

@@ -7,7 +7,7 @@ import UserPage from '../UserPage';
 import { connect } from "react-redux";
 import { getIsAuthorized } from "../../reducers/auth";
 
-class AppRouter extends Component {
+export class AppRouter extends Component {
   render() {
     return (
       <div className="App">
