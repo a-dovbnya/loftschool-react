@@ -15,13 +15,16 @@ describe('AppRouter', () => {
 
     it('В AppRouter должен содержаться компонент PrivateRoute', () => {
         const wrapper = shallow(<AppRouter />);
-        expect(wrapper.find(PrivateRoute)).toHaveLength(1);
+        expect(wrapper.find(PrivateRoute)).not.toHaveLength(0);
     });
 
     it("В AppRouter должен содержаться компонент PrivateRoute с атрибутом path='/user/:name' ", () => {
         const wrapper = shallow(<AppRouter />);
-        const prop = wrapper.find(PrivateRoute).prop('path');
-        expect(prop).toBe('/user/:name');
+        const privateRoute = wrapper.findWhere(
+            el => el.type() === PrivateRoute && el.prop('path') === '/user/:name',
+        );
+        expect(privateRoute).toHaveLength(1);
+      
     });
 
     it('В AppRouter должен содержаться компонент Route', () => {
@@ -37,10 +40,10 @@ describe('AppRouter', () => {
         expect(findRoutes).toHaveLength(1);
     });
 
-    it('В AppRouter редирект на /user/dex157', () => {
+    it('В AppRouter редирект на /user/me', () => {
         const wrapper = shallow(<AppRouter />);
         const findRedirects = wrapper.findWhere(
-          el => el.type() === Redirect && el.prop('to') === '/user/dex157',
+          el => el.type() === Redirect && el.prop('to') === '/user/me',
         );
         expect(findRedirects).toHaveLength(1);
     }); 

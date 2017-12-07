@@ -1,42 +1,40 @@
 import { handleActions } from "redux-actions";
 import { fetchUserRequest, fetchUserSuccess, fetchUserFailure } from "../actions/users";
+import { logout } from '../actions/auth';
 
 const initialState = {
   isFetching: false,
-  isFethed: false,
+  isFetched: false,
   data: null,
-  error: false
+  error: null
 }
 
 export default handleActions(
   {
-    [fetchUserRequest]: (state, action) => { console.log("action = ", action); return({
+    [fetchUserRequest]: (state, action) => ({
       ...state,
       isFetching: true,
-      isFethed: false,
-      error: false,
+      isFetched: false,
+      error: null,
       data: null
-    })},
+    }),
     [fetchUserSuccess]: (state, action) => ({
       ...state,
       isFetching: false,
-      isFethed: true,
+      isFetched: true,
       data: action.payload.data,
-      error: false
+      error: null
     }),
     [fetchUserFailure]: (state, action) => ({
       ...state,
       isFetching: false,
-      isFethed: false,
-      error: true,
+      isFetched: false,
+      error: action.payload,
       data: null
     })
-  },
-  {
-    isFetching: false,
-    error: false
   }, initialState);
 
 export const getUsers = state => state.users.data;
 export const getFetching = state => state.users.isFetching;
+export const getIsFetched = state => state.users.isFetched;
 export const getError = state => state.users.error;

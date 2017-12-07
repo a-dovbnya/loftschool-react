@@ -3,7 +3,7 @@ import Followers from "../Followers";
 import {connect} from "react-redux";
 import {getUsers, getFetching, getError} from "../../reducers/users";
 import { logout } from "../../actions/auth";
-import { fetchUserRequest } from "../../actions/users";
+import { fetchUserRequest, fetchTokenOwnerRequest } from "../../actions/users";
 import Loader from 'react-svg-spinner';
 import "./UserPage.css";
 
@@ -11,14 +11,22 @@ export class UserPage extends PureComponent {
 
     componentDidMount() {
         const name = this.props.match.params.name;
-        this.props.fetchUserRequest(fetchUserRequest(name));
+        if (name) {
+            this.props.fetchUserRequest(fetchUserRequest(name));
+        }else{
+            this.props.fetchTokenOwnerRequest(fetchTokenOwnerRequest());
+        }
+
+        
     }
     componentWillReceiveProps(nextProps) {
         const currentName = this.props.match.params.name;
         const nextName = nextProps.match.params.name;
 
-        if (currentName !== nextName) {
-            this.props.fetchUserRequest(fetchUserRequest(nextName));
+        if (currentName !== nextName ) {
+            if(nextName !== undefined){
+                this.props.fetchUserRequest(fetchUserRequest(nextName));
+            }
         }
     }
     appLogout = () => {
@@ -77,6 +85,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
     fetchUserRequest: action => dispatch(action),
+    fetchTokenOwnerRequest: action => dispatch(action),
     logout: action => dispatch(action)
 });
   

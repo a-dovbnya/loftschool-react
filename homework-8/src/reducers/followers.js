@@ -1,37 +1,35 @@
 import { handleActions } from "redux-actions";
-import {
-  fetchFollowersRequest,
-  fetchFollowersSuccess,
-  fetchFollowersFailure
-} from "../actions/followers";
-
+import {fetchFollowersRequest, fetchFollowersSuccess, fetchFollowersFailure } from "../actions/followers";
+const initialState = {
+  isFetching: false,
+  isFetched: false,
+  error: null,
+  data: null
+}
 export default handleActions(
   {
     [fetchFollowersRequest]: (state, action) => ({
       ...state,
       isFetching: true,
-      error: false,
-      data: null
+      isFetched: false,
+      error: null,
+      ids: null
     }),
     [fetchFollowersSuccess]: (state, action) => ({
       ...state,
       isFetching: false,
-      data: action.payload.data,
-      error: false
+      isFetched: true,
+      ids: action.payload.data,
+      error: null
     }),
     [fetchFollowersFailure]: (state, action) => ({
       ...state,
       isFetching: false,
-      error: true
+      isFetched: false,
+      error: action.payload
     })
-  },
-  {
-    isFetching: false,
-    error: false,
-    data: null
-  }
-);
+  }, initialState );
 
-export const getFollowers = state => state.followers.data;
+export const getFollowers = state => state.followers.ids;
 export const getFetching = state => state.followers.isFetching;
 export const getError = state => state.followers.error;

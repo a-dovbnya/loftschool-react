@@ -15,7 +15,7 @@ describe('Компонент Followers', () => {
     });
 
     it('возвращаются компоненты Followers в том количестве, в котором передаются в props.followers', () => {
-        const followers = [{}, {}];
+        const followers = [{id: 1}];
         const wrapper = shallow(<Followers fetchFollowersRequest={jest.fn()}  isFetching={false} followers={followers}/>);
         expect(wrapper.find('Follower')).toHaveLength(followers.length);
     });
