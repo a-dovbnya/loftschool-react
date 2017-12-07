@@ -4,7 +4,7 @@ import {fetchUserSaga} from '../users';
 import {getUserInformation} from '../../api';
 
 describe('Saga users:', () => {
-  /*it('call getUserInformation', () => {
+  it('call getUserInformation', () => {
     const action = {payload: 'test_login'};
     const saga = fetchUserSaga(action);
     expect(saga.next().value).toEqual(call(getUserInformation, 'test_login'));
@@ -22,7 +22,7 @@ describe('Saga users:', () => {
     const saga = fetchUserSaga(action);
     saga.next();
     expect(saga.throw(error).value).toEqual(put(fetchUserFailure(error)));
-  });*/
+  });
 });
 
 

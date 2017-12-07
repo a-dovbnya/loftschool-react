@@ -2,7 +2,7 @@ import { fetchFollowersRequest, fetchFollowersSuccess, fetchFollowersFailure } f
 import { takeLatest, call, put } from "redux-saga/effects";
 import { getUserFollowers } from "../api";
 
-function* FetchFollowersSaga({ payload }) {
+export function* fetchFollowersSaga({ payload }) {
   try {
     const followersData = yield call(getUserFollowers, payload);
     yield put(fetchFollowersSuccess(followersData));
@@ -12,6 +12,6 @@ function* FetchFollowersSaga({ payload }) {
 }
 
 export function* fetchFollowersWatch() {
-    yield takeLatest(fetchFollowersRequest, FetchFollowersSaga);
+    yield takeLatest(fetchFollowersRequest, fetchFollowersSaga);
 }
   

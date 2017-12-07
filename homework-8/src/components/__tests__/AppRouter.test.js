@@ -9,8 +9,6 @@ describe('AppRouter', () => {
 
     it("В AppRouter должен содержаться компонент Switch", () => {
         const wrapper = shallow(<AppRouter />);
-       //console.log("wrapper = ", wrapper);
-        //console.log(wrapper.debug());
         expect(wrapper.find(Switch)).toHaveLength(1);
         
     });
