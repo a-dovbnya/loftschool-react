@@ -23,8 +23,6 @@ describe('Сага request', () => {
       expect(saga.next(true).value).toEqual(put(clearNetworkErrors()));
     });
 
-
-
     it('Эффект put networkError', () => {
       const error = { response: { status: 401 } };
       expect(saga.throw(error).value).toEqual(put(networkError(error)));
