@@ -1,0 +1,31 @@
+.follower{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: 30px;
+}
+
+.follower__img-wrapp{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+.follower__img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.follower__txt-wrapp{
+    padding-left: 20px;
+    text-align: left;
+}
+.follower__link{
+
+}
