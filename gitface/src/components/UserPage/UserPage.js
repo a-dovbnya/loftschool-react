@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react';
 import Followers from "../Followers";
 import {connect} from "react-redux";
 import {getUsers, getFetching, getError} from "../../reducers/users";
-//import { logout } from "../../actions/auth";
 import { fetchUserRequest, fetchTokenOwnerRequest } from "../../actions/users";
 import Loader from 'react-svg-spinner';
 import "./UserPage.css";
@@ -29,9 +28,6 @@ export class UserPage extends PureComponent {
             }
         }
     }
-    /*appLogout = () => {
-        this.props.logout(logout());
-    };*/
 
     render(){
 
@@ -71,7 +67,6 @@ export class UserPage extends PureComponent {
     }
 }
 
-//export default UserPage;
 const mapStateToProps = state => ({
     user: getUsers(state),
     isFetching: getFetching(state)
@@ -79,7 +74,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     fetchUserRequest: action => dispatch(action),
     fetchTokenOwnerRequest: action => dispatch(action),
-   // logout: action => dispatch(action)
 });
   
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
